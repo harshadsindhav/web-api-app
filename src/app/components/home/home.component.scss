@@ -1,0 +1,131 @@
+
+
+.left-navigation {
+  float: left;
+  width : 22%;
+  padding-right: 10px;
+  border-right: 1px solid grey;
+}
+
+.content-data {
+  margin-left : 30px;
+  display: inline-block;
+  width : 72%;
+  overflow: hidden;
+  .iframe-area {
+    iframe {
+      width: 100%;
+      height : 2500px !important;
+      border:none;
+      height:1000px;
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+.input-group  {
+  input {
+    width:200px;
+  }
+  span {
+    button {
+      height:34px;
+      margin-left: 10px;
+    }
+  }
+}
+ .list-group {
+    ul {
+      list-style: none;
+      align-items: flex-end;
+      width:200px;
+      li {
+        h4 {
+          cursor: pointer;
+          .fa-angle-right::before {
+            content: "\f00d";
+            font-family: "FontAwesome";
+          }
+          .fa {
+            content: "\f000";
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+        /*--adjust as necessary--*/
+            color: #000;
+            font-size: 18px;
+            //padding-right: 0.5em;
+            //position: absolute;
+            top: 10px;
+            left: 0;
+          }
+        }
+        h4.collapsed {
+          
+        }
+        h4.expanded {
+          li {
+            font-weight: bold;
+          }
+          //border-left: 1px solid #000000;
+          //padding-left: 5px;
+          //background-color : grey;
+          //line-height: 30px;
+        }
+        span {
+          a {
+            font-size: 15px;
+            cursor: pointer;
+            //color: black;
+            :hover {
+              font-weight: bolder !important ;
+            }
+          }
+        }
+      }
+    }
+    margin-left: -40px;
+    margin-top:30px;
+    p.api_entry {
+      cursor: pointer;
+      font-size: 12px;
+    }
+  }
+
+/*
+.collapsible-menu > li > ul {
+    display: none;
+}
+*/
+
+.section {
+  color:black;
+  font-size: 14px;
+  table {
+    margin-left:0px !important;
+    width: 100%;
+  }
+}
+
+#menu-toggle {
+  display: none; /* hide the checkbox */
+}
+#menu {
+  display: none;
+}
+#menu-toggle:checked + #menu {
+  display: block;
+}
+
+.selected {
+  background-color: lightgrey;
+  border-left: 2px solid;
+  padding-left: 5px;
+}
+
+
+
+

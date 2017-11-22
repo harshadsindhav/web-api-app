@@ -1,0 +1,46 @@
+
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 0px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+
+.nav-header {
+    font-size: 20px;
+    padding-bottom: 20px;
+   // padding-left: 30px;
+}
+
+#main-container {
+    margin:0px 50px;
+}
+
+
+.nav-header {
+  display: grid;
+  div {
+    display: inline-block;
+    #saba-navbar {
+      display: grid;
+    }
+  }
+  h1 {
+    margin-top:15px;
+  }
+  img {
+    width: 56px;
+    height: 56px;
+    float: left;
+    margin-top:15px;
+  }
+}
+

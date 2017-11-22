@@ -1,0 +1,50 @@
+<div class="api-reference-main">
+  <div class="left-navigation">
+    <!--<h2>Search APIS</h2>-->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <input type="input" class="form-control" placeholder="Search API" (keyup)="onSearch()" [(ngModel)]="searchtext">
+          <span class="input-group-button">
+            <button class="btn btn-primary" type="button">Search</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!--API Listing Row starts -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="list-group">
+          <ul>
+            <li *ngFor="let item of apiCategories.sub_categories">
+              <!--<h4 id="category-heading" class="expanded" (click)="categoryToggled()">
+                <span id="tgSpan1" class="fa fa-angle-down"  my-category-selector [mycolor]="categoryState"></span>
+                {{item.category}}
+              </h4>-->
+              <category-heading [heading]="item.category"></category-heading>
+              <ul *ngFor="let subcategory of item.sub_categories">
+                <li>
+                  <h4 id="category-heading" class="expanded" (click)="categoryToggled()">
+                    <span my-category-selector [mycolor]="categoryState"></span>
+                    {{subcategory.category}}
+                  </h4>
+                  <ul>
+                    <li *ngFor="let api of subcategory.api_list | filter : searchtext">
+                      <p class="api_entry" (click)="test($event)">{{api.title}}</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--API Listing Row ends -->
+  </div>
+  <div class="content-data">
+    <div class="iframe-area">
+      <iframe [src]="myurl"></iframe>
+    </div>
+  </div>
+</div>
