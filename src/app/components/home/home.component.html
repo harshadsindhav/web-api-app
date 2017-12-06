@@ -5,31 +5,32 @@
       <div class="col-lg-6">
         <div class="input-group">
           <input type="input" class="form-control" placeholder="Search API" (keyup)="onSearch()" [(ngModel)]="searchtext">
-          <span class="input-group-button">
+          <!--<span class="input-group-button">
             <button class="btn btn-primary" type="button">Search</button>
           </span>
+        -->
         </div>
       </div>
     </div>
     <!--API Listing Row starts -->
-    <div class="row">
+    <div class="row api-list-navigation">
       <div class="col-lg-6">
         <div class="list-group">
           <ul>
-            <li *ngFor="let item of apiCategories.sub_categories">
-              <!--<h4 id="category-heading" class="expanded" (click)="categoryToggled()">
+            <li class="root-category" id="root-category" *ngFor="let item of apiCategories.sub_categories">
+              <h4 id="category-heading" class="collapsed" (click)="categoryToggled()">
                 <span id="tgSpan1" class="fa fa-angle-down"  my-category-selector [mycolor]="categoryState"></span>
                 {{item.category}}
-              </h4>-->
-              <category-heading [heading]="item.category"></category-heading>
-              <ul *ngFor="let subcategory of item.sub_categories">
-                <li>
-                  <h4 id="category-heading" class="expanded" (click)="categoryToggled()">
-                    <span my-category-selector [mycolor]="categoryState"></span>
+              </h4>
+              <!--<category-heading [heading]="item.category"></category-heading>-->
+              <ul *ngFor="let subcategory of item.sub_categories | categoryfilter : searchtext : item.sub_categories">
+                <li class="component-category">
+                  <h4 id="category-heading" class="collapsed" (click)="categoryToggled()">
+                    <span class="fa fa-angle-up" my-category-selector [mycolor]="categoryState"></span>
                     {{subcategory.category}}
                   </h4>
                   <ul>
-                    <li *ngFor="let api of subcategory.api_list | filter : searchtext">
+                    <li *ngFor="let api of subcategory.api_list">
                       <p class="api_entry" (click)="test($event)">{{api.title}}</p>
                     </li>
                   </ul>

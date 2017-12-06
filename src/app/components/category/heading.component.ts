@@ -18,7 +18,7 @@ export class CategoryHeading {
     @ViewChild(CategoryHeadingIcon) icon : CategoryHeadingIcon;
 
     toggleCategory() {
-        console.log('goggle category header');
+        console.log('toggle category header');
         this.icon.switchIcon();
     }
 }

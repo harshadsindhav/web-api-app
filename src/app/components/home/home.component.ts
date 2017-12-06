@@ -20,7 +20,7 @@ declare var jQuery : any;
 export class HomeComponent implements OnInit, AfterViewInit {
     apiCategories : any;
     searchtext : string = "";
-    iframeurl : string ="../../assets/find details of facilities.html";
+    iframeurl : string ="../../assets/Find details of facilities.html";
     myurl : any;
     categoryExpanded : boolean = true;
 
@@ -74,20 +74,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
                     }
                 }
             }
-            
+
         }
-        
+
         return null;
     }
 
     ngAfterViewInit() {
-        $(this.eleRef.nativeElement).find('li').each(function() {
-            var that = $(this);
-            var header = that.children('h4');
-            var body = that.children('ul');
+      console.log('After view init called');
+        $(this.eleRef.nativeElement).find('li.root-category').each(function() {
+            let that = $(this);
+            let header = that.children('h4');
+            let body = that.children('ul');
+            let arrowIcon = header.children('span');
+            if(header.hasClass('collapsed')) {
+                body.slideUp('slow');
+            } else {
+                body.slideDown('slow');
+            }
             header.click(function() {
                 //body.hide();
                 header.toggleClass('expanded').toggleClass('collapsed');
+                arrowIcon.toggleClass('fa fa-angle-up').toggleClass('fa fa-angle-down');
                 if(header.hasClass('collapsed')) {
                     body.slideUp('slow');
                 } else {
@@ -95,50 +103,64 @@ export class HomeComponent implements OnInit, AfterViewInit {
                 }
             });
         });
+
+        $(this.eleRef.nativeElement).find('li.component-category').each(function(){
+          let that = $(this);
+          let header = that.children('h4');
+          let body = that.children('ul');
+          let arrowIcon = header.children('span');
+          if(header.hasClass('collapsed')) {
+            body.slideUp('slow');
+          } else {
+            body.slideDown('slow');
+          }
+          header.click(function() {
+            header.toggleClass('expanded').toggleClass('collapsed');
+            arrowIcon.toggleClass('fa fa-angle-down').toggleClass('fa fa-angle-up');
+            if(header.hasClass('collapsed')) {
+              body.slideUp('slow');
+            } else {
+              body.slideDown('slow');
+            }
+          });
+        });
     }
 
     categoryToggled() {
-        $(this.eleRef.nativeElement).on('click', '#category-heading', '> span ', function() {
-            /*let className = $(this).attr("class");
-            console.log('category toggled' + className);
-            if(className.includes('up')) {
-                $(this).addClass('fa-angle-down');
-                $(this).removeClass('fa-angle-up');
-            } else {
-                $(this).addClass('fa-angle-up');
-                $(this).removeClass('fa-angle-down');
-            }*/
-            console.log('category clicked');
+        let that = $(this);
+        let header = that.children('h4');
+        let body = that.children('ul');
+        let arrowIcon = header.children('span');
+        header.toggleClass('expanded').toggleClass('collapsed');
+        arrowIcon.toggleClass('fa fa-angle-down').toggleClass('fa fa-angle-up');
+        $(body).each(function() {
+          console.log('test');
+          let headerItem = $(this);
+          let bodyItem = headerItem.children('ul');
+          if(headerItem.hasClass('collapsed')) {
+            bodyItem.slideUp('slow');
+          } else {
+            bodyItem.slideDown('slow');
+          }
         });
+
     }
 
     onSearch() {
         if(this.searchtext && this.searchtext.length > 0) {
             $(this.eleRef.nativeElement).find('li').each( function() {
-                console.log(this);
                 var that = $(this);
                 var header = that.children('h4');
                 var body = that.children('ul');
-                //if(body.length == 0) {
-                //    console.log('hiding element');
-                //    that.hide();
-                //} else {
+                body.slideDown('slow');
+                /*if(body.length == 0) {
+                    that.hide();
+                } else {
                     body.slideDown('slow');
-               // }
+                }*/
             });
         } else {
-            $(this.eleRef.nativeElement).find('li').each( function() {
-                console.log(this);
-                var that = $(this);
-                var header = that.children('h4');
-                var body = that.children('ul');
-               // if(body.length == 0) {
-               //     console.log('hiding element');
-               //     that.hide();
-               // } else {
-                    body.slideDown('slow');
-               // }
-            });
+          this.ngAfterViewInit();
         }
     }
 }

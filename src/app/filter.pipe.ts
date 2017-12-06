@@ -7,6 +7,8 @@ import { ApiCategory, ApiEntry } from './models/category.model';
 export class FilterPipe implements PipeTransform {
 
   transform(items: any, searchText: any): any {
+    console.log('filter pipe called');
+    console.log(items);
     if(searchText == undefined) {
       return items;
     }
@@ -16,7 +18,7 @@ export class FilterPipe implements PipeTransform {
     })*/
     return items.filter(function(api) {
       return api.title.toLowerCase().includes(searchText.toLowerCase());
-    })
+    });
   }
 
 
